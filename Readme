@@ -1,0 +1,139 @@
+# Time Perspective: AI Personalization Dashboard (2024)
+
+ 
+
+A Power BI dashboard that looks at *when* customers engage with AI product recommendations, and whether timing changes their buying behaviour.
+
+ 
+
+This was a group assessment for INFO811 Business Intelligence (MSc Applied IT, Wintec). This repository holds my part: the **time perspective**.
+
+ 
+
+## Business question
+
+ 
+
+Does the month, season or time of day change how customers engage with AI recommendations and whether they buy?
+
+ 
+
+## Key findings
+
+ 
+
+- **Time changes when customers engage, not whether they buy.** The purchase rate stays close to 60% in every period.
+
+- **Monthly traffic is steady.** October was the peak month with 21,525 interactions, yet the monthly seasonal index only ranged from 0.982 to 1.014 (within about 2% of average).
+
+- **Evenings are busiest.** There were 2.6 times more interactions in the evening than at night, with a similar purchase rate (60.4% vs 60.0%).
+
+- **Clicks drop before the cart.** Click rate (60.3%) is 10.8 points above add-to-cart rate (49.6%), and the gap is the same in every period.
+
+- **Season and time of day matter very little.** The purchase rate varies by only 1.7 points, from 59.3% (spring night) to 61.0% (fall afternoon). The 7-day rolling purchase rate dipped to 58.2% around 19–23 November.
+
+- **Discounts do make a difference.** Discounts of 40% or more lifted the purchase rate to 67.5%, against 55.7% for discounts of 5% or less.
+
+ 
+
+## What is on the dashboard
+
+ 
+
+- Four KPI cards: total interactions, average daily interactions, purchase rate and the click-to-cart gap
+
+- Monthly interactions with a 3-month forecast (95% confidence interval)
+
+- Seasonal index by month (1.0 = an average day)
+
+- Engagement rate by time of day (click, add-to-cart and purchase rates)
+
+- Purchase rate by time of day and season
+
+- Rolling 7-day purchase rate with anomaly detection
+
+- A key insights panel
+
+- Slicers for season, time of day and month
+
+ 
+
+![Time Perspective dashboard](images/dashboard.png)
+
+ 
+
+## Data
+
+ 
+
+- **Dataset:** Retail AI Recommendation Personalization (250,000 customer interactions, 1 January to 30 December 2024, 31 columns). [Dataset link]
+
+- **Main fields used:** `interaction_date`, `time_of_day`, `season`, `clicked_recommendation`, `added_to_cart`, `purchased_after_recommendation` and `discount_percentage`.
+
+- **Data model:** the main interactions table, a 2024 calendar table, and a small Engagement Type table that lets one chart show three rates.
+
+ 
+
+## Main measures (DAX)
+
+ 
+
+| Measure | What it calculates |
+
+| --- | --- |
+
+| Total Interactions | Number of rows (interactions) |
+
+| Average Daily Interactions | Total interactions divided by the number of days |
+
+| Click Rate, Add to Cart Rate, Purchase Rate | Share of interactions that were clicked, added to cart or purchased |
+
+| Engagement Rate | Switches between the three rates for the Engagement Type chart |
+
+| Seasonal Index | Average daily interactions in a month divided by the yearly average |
+
+| Click to Cart Gap | Click rate minus add-to-cart rate, in percentage points |
+
+| Purchase Rate Rolling 7 Days | Purchase rate over the previous 7 days |
+
+| Anomaly Point | Flags days when the rolling rate is more than 2.5 standard deviations from its mean |
+
+ 
+
+## Tools
+
+ 
+
+Power BI Desktop, DAX, Power Query (CSV import) and a custom report theme.
+
+ 
+
+## How to open
+
+ 
+
+1. Download `INFO811_A3_Time_Perspective.pbix`.
+
+2. Open it in Power BI Desktop (free for Windows). The data is stored inside the file.
+
+3. To refresh the data, point the data source to your own copy of the CSV under Transform data > Data source settings.
+
+ 
+
+## Limitations
+
+ 
+
+- The data covers one year (2024), so the forecast rests on a single yearly pattern.
+
+- In this dataset each season label appears in every month, so the season results describe the label in the data, not calendar seasons.
+
+ 
+
+## Author
+
+ 
+
+Chandima Sewwandi Widyathilaka Wipulaguna, MSc Applied IT student, Wintec, Hamilton, New Zealand.
+
+LinkedIn: [www.linkedin.com/in/chandima-sewwandi-88379bb1]
